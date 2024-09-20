@@ -1,541 +1,541 @@
 {
-	"info": {
-		"_postman_id": "141b3abd-7dc9-4c2a-a567-bea15ff85a03",
-		"name": "neoflex",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21428156"
-	},
-	"item": [
-		{
-			"name": "vacation pay calculation",
-			"item": [
-				{
-					"name": "get vacation pay",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.be.ok;\r",
-									"});\r",
-									"pm.test(\"Величина отпускных при наличии среднегодовой зарплаты и отпускного дня\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData, 'Величина отпускных должна быть 3413').to.eql(3413);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/calculacte?averageSalary=50000.50&vacationDays=2024-02-01, 2024-02-02",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"calculacte"
-							],
-							"query": [
-								{
-									"key": "averageSalary",
-									"value": "50000.50"
-								},
-								{
-									"key": "vacationDays",
-									"value": "2024-02-01, 2024-02-02"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get vacation pay without average salary",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.be.badRequest;\r",
-									"});\r",
-									"pm.test(\"Сообщение об ошибке - Необходимо указать среднюю зарплату\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.message).to.eql(\"Необходимо указать среднюю зарплату\");\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/calculacte?vacationDays=2024-02-01, 2024-01-02",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"calculacte"
-							],
-							"query": [
-								{
-									"key": "averageSalary",
-									"value": "50000.50",
-									"disabled": true
-								},
-								{
-									"key": "vacationDays",
-									"value": "2024-02-01, 2024-01-02"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get vacation pay with negative average salary",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.be.badRequest;\r",
-									"});\r",
-									"pm.test(\"Сообщение об ошибке - Средняя зарплата не может быть отрицательной\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.message).to.eql(\"Средняя зарплата не может быть отрицательной\");\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/calculacte?averageSalary=-50000.50&vacationDays=2024-02-01",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"calculacte"
-							],
-							"query": [
-								{
-									"key": "averageSalary",
-									"value": "-50000.50"
-								},
-								{
-									"key": "vacationDays",
-									"value": "2024-02-01"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get vacation pay without vacation days",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.be.badRequest;\r",
-									"});\r",
-									"pm.test(\"Сообщение об ошибке - Необходим список отпускных дней\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.message).to.eql(\"Необходим список отпускных дней\");\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/calculacte?averageSalary=50000.50",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"calculacte"
-							],
-							"query": [
-								{
-									"key": "averageSalary",
-									"value": "50000.50"
-								},
-								{
-									"key": "vacationDays",
-									"value": "2024-02-01",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get vacation pay with zero vacation days",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.be.badRequest;\r",
-									"});\r",
-									"pm.test(\"Сообщение об ошибке - Должен быть указан хотя бы один день отпуска\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.message).to.eql(\"Должен быть указан хотя бы один день отпуска\");\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/calculacte?averageSalary=50000.50&vacationDays=",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"calculacte"
-							],
-							"query": [
-								{
-									"key": "averageSalary",
-									"value": "50000.50"
-								},
-								{
-									"key": "vacationDays",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get vacation pay for weekends",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.be.ok;\r",
-									"});\r",
-									"pm.test(\"Величина отпускных в период новогодних праздников\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData, 'Величина отпускных должна быть 0').to.eql(0);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/calculacte?averageSalary=50000.50&vacationDays=2024-02-03, 2024-02-04",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"calculacte"
-							],
-							"query": [
-								{
-									"key": "averageSalary",
-									"value": "50000.50"
-								},
-								{
-									"key": "vacationDays",
-									"value": "2024-02-03, 2024-02-04"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get vacation pay for new year holidays",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.be.ok;\r",
-									"});\r",
-									"pm.test(\"Величина отпускных в период новогодних праздников\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData, 'Величина отпускных должна быть 0').to.eql(0);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/calculacte?averageSalary=50000.50&vacationDays=2024-01-01, 2024-01-02,2024-01-03,2024-01-04,2024-01-05,2024-01-06,2024-01-07,2024-01-08",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"calculacte"
-							],
-							"query": [
-								{
-									"key": "averageSalary",
-									"value": "50000.50"
-								},
-								{
-									"key": "vacationDays",
-									"value": "2024-01-01, 2024-01-02,2024-01-03,2024-01-04,2024-01-05,2024-01-06,2024-01-07,2024-01-08"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get vacation pay for other public holidays",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.be.ok;\r",
-									"});\r",
-									"pm.test(\"Величина отпускных во время остальных государственных праздников\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData, 'Величина отпускных должна быть 0').to.eql(0);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/calculacte?averageSalary=50000.50&vacationDays=2024-02-23, 2024-03-08,2024-05-01,2024-05-09,2024-06-12,2024-11-04",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"calculacte"
-							],
-							"query": [
-								{
-									"key": "averageSalary",
-									"value": "50000.50"
-								},
-								{
-									"key": "vacationDays",
-									"value": "2024-02-23, 2024-03-08,2024-05-01,2024-05-09,2024-06-12,2024-11-04"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get vacation pay for postponed public holiday (not new year)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.be.ok;\r",
-									"});\r",
-									"pm.test(\"Величина отпускных во время отложенного неновогоднего государственного праздника\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData, 'Величина отпускных должна быть 0').to.eql(0);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/calculacte?averageSalary=50000.50&vacationDays=2025-02-24",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"calculacte"
-							],
-							"query": [
-								{
-									"key": "averageSalary",
-									"value": "50000.50"
-								},
-								{
-									"key": "vacationDays",
-									"value": "2025-02-24"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "baseUrl",
-			"value": "http://localhost:8080",
-			"type": "string"
-		}
-	]
+  "info": {
+    "_postman_id": "141b3abd-7dc9-4c2a-a567-bea15ff85a03",
+    "name": "neoflex",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "21428156"
+  },
+  "item": [
+    {
+      "name": "vacation pay calculation",
+      "item": [
+        {
+          "name": "get vacation pay",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.be.ok;\r",
+                  "});\r",
+                  "pm.test(\"Величина отпускных при наличии среднегодовой зарплаты и отпускного дня\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData, 'Величина отпускных должна быть 3413').to.eql(3413);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/calculacte?averageSalary=50000.50&vacationDays=2024-02-01, 2024-02-02",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculacte"
+              ],
+              "query": [
+                {
+                  "key": "averageSalary",
+                  "value": "50000.50"
+                },
+                {
+                  "key": "vacationDays",
+                  "value": "2024-02-01, 2024-02-02"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get vacation pay without average salary",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.be.badRequest;\r",
+                  "});\r",
+                  "pm.test(\"Сообщение об ошибке - Необходимо указать среднюю зарплату\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.message).to.eql(\"Необходимо указать среднюю зарплату\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/calculacte?vacationDays=2024-02-01, 2024-01-02",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculacte"
+              ],
+              "query": [
+                {
+                  "key": "averageSalary",
+                  "value": "50000.50",
+                  "disabled": true
+                },
+                {
+                  "key": "vacationDays",
+                  "value": "2024-02-01, 2024-01-02"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get vacation pay with negative average salary",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.be.badRequest;\r",
+                  "});\r",
+                  "pm.test(\"Сообщение об ошибке - Средняя зарплата не может быть отрицательной\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.message).to.eql(\"Средняя зарплата не может быть отрицательной\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/calculacte?averageSalary=-50000.50&vacationDays=2024-02-01",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculacte"
+              ],
+              "query": [
+                {
+                  "key": "averageSalary",
+                  "value": "-50000.50"
+                },
+                {
+                  "key": "vacationDays",
+                  "value": "2024-02-01"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get vacation pay without vacation days",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.be.badRequest;\r",
+                  "});\r",
+                  "pm.test(\"Сообщение об ошибке - Необходим список отпускных дней\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.message).to.eql(\"Необходим список отпускных дней\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/calculacte?averageSalary=50000.50",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculacte"
+              ],
+              "query": [
+                {
+                  "key": "averageSalary",
+                  "value": "50000.50"
+                },
+                {
+                  "key": "vacationDays",
+                  "value": "2024-02-01",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get vacation pay with zero vacation days",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.be.badRequest;\r",
+                  "});\r",
+                  "pm.test(\"Сообщение об ошибке - Должен быть указан хотя бы один день отпуска\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.message).to.eql(\"Должен быть указан хотя бы один день отпуска\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/calculacte?averageSalary=50000.50&vacationDays=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculacte"
+              ],
+              "query": [
+                {
+                  "key": "averageSalary",
+                  "value": "50000.50"
+                },
+                {
+                  "key": "vacationDays",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get vacation pay for weekends",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.be.ok;\r",
+                  "});\r",
+                  "pm.test(\"Величина отпускных в период новогодних праздников\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData, 'Величина отпускных должна быть 0').to.eql(0);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/calculacte?averageSalary=50000.50&vacationDays=2024-02-03, 2024-02-04",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculacte"
+              ],
+              "query": [
+                {
+                  "key": "averageSalary",
+                  "value": "50000.50"
+                },
+                {
+                  "key": "vacationDays",
+                  "value": "2024-02-03, 2024-02-04"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get vacation pay for new year holidays",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.be.ok;\r",
+                  "});\r",
+                  "pm.test(\"Величина отпускных в период новогодних праздников\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData, 'Величина отпускных должна быть 0').to.eql(0);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/calculacte?averageSalary=50000.50&vacationDays=2024-01-01, 2024-01-02,2024-01-03,2024-01-04,2024-01-05,2024-01-06,2024-01-07,2024-01-08",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculacte"
+              ],
+              "query": [
+                {
+                  "key": "averageSalary",
+                  "value": "50000.50"
+                },
+                {
+                  "key": "vacationDays",
+                  "value": "2024-01-01, 2024-01-02,2024-01-03,2024-01-04,2024-01-05,2024-01-06,2024-01-07,2024-01-08"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get vacation pay for other public holidays",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.be.ok;\r",
+                  "});\r",
+                  "pm.test(\"Величина отпускных во время остальных государственных праздников\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData, 'Величина отпускных должна быть 0').to.eql(0);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/calculacte?averageSalary=50000.50&vacationDays=2024-02-23, 2024-03-08,2024-05-01,2024-05-09,2024-06-12,2024-11-04",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculacte"
+              ],
+              "query": [
+                {
+                  "key": "averageSalary",
+                  "value": "50000.50"
+                },
+                {
+                  "key": "vacationDays",
+                  "value": "2024-02-23, 2024-03-08,2024-05-01,2024-05-09,2024-06-12,2024-11-04"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get vacation pay for postponed public holiday (not new year)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.be.ok;\r",
+                  "});\r",
+                  "pm.test(\"Величина отпускных во время отложенного неновогоднего государственного праздника\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData, 'Величина отпускных должна быть 0').to.eql(0);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/calculacte?averageSalary=50000.50&vacationDays=2025-02-24",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "calculacte"
+              ],
+              "query": [
+                {
+                  "key": "averageSalary",
+                  "value": "50000.50"
+                },
+                {
+                  "key": "vacationDays",
+                  "value": "2025-02-24"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ]
 }

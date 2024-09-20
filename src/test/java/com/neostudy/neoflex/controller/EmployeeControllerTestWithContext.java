@@ -1,6 +1,5 @@
 package com.neostudy.neoflex.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.neostudy.neoflex.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class EmployeeControllerTestWithContext {
     @Autowired
     MockMvc mvc;
-    @Autowired
-    ObjectMapper mapper;
     @MockBean
     EmployeeService employeeService;
 
@@ -35,7 +32,7 @@ public class EmployeeControllerTestWithContext {
         mvc.perform(get("/calculacte")
                         .param("vacationDays", "2024-02-01", "2024-02-02"))
                 .andExpect(status().isBadRequest())
-                    .andExpect(jsonPath("$.message").value("Необходимо указать среднюю зарплату"));
+                .andExpect(jsonPath("$.message").value("Необходимо указать среднюю зарплату"));
     }
 
     @Test
