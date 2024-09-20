@@ -29,7 +29,6 @@ API представлено в виде эндпоинта GET /calculacte дл
 git clone git@github.com:OsipovKonstantin/neoflex.git
 cd ~/neoflex   
 mvn clean package
-git checkout dev
 docker-compose up
    ```
 Приложение готово к использованию! Сервис доступен по андресу [http://localhost:8080](http://localhost:8080).
