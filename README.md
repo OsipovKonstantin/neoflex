@@ -41,5 +41,5 @@ docker-compose up
 <br>Со сценариями работы приложения можно ознакомится, запустив коллекции
 [Postman-тестов](postman/vacation-pay-calculator.postman_collection.json).
 Для этого необходимо открыть ПО Postman, нажать сочетание клавиш Ctrl+O (импорт), выбрать импорт по следующему пути
-Пользователи/имя_вашего_пользователя/neoflex/postman/neoflex.postman_collection.json
-Заходим в импортированную коллекцию, выбираем пункт Run/Run neoflex
+Пользователи/имя_вашего_пользователя/vacation-pay-calculator/postman/vacation-pay-calculator.postman_collection.json
+Заходим в импортированную коллекцию, выбираем пункт Run/Run vacation-pay-calculator
