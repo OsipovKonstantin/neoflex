@@ -1,4 +1,4 @@
-package com.neostudy.neoflex.service;
+package com.vacationpay.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.time.MonthDay;
 import java.util.List;
 
-import static com.neostudy.neoflex.util.Constants.*;
+import static com.vacationpay.util.Constants.*;
 
 @Slf4j
 @Service

@@ -1,6 +1,6 @@
-package com.neostudy.neoflex.controller;
+package com.vacationpay.controller;
 
-import com.neostudy.neoflex.service.EmployeeService;
+import com.vacationpay.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

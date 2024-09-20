@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.neostudy</groupId>
-    <artifactId>neoflex</artifactId>
+    <artifactId>vacationpay</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>neoflex</name>
+    <name>vacationpay</name>
     <description>test assignment</description>
     <url/>
     <licenses>

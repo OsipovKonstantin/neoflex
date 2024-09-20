@@ -1,13 +1,13 @@
-package com.neostudy.neoflex;
+package com.vacationpay;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NeoflexApplication {
+public class VacationPayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NeoflexApplication.class, args);
+        SpringApplication.run(VacationPayApplication.class, args);
     }
 
 }

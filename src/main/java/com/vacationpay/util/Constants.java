@@ -1,4 +1,4 @@
-package com.neostudy.neoflex.util;
+package com.vacationpay.util;
 
 import lombok.experimental.UtilityClass;
 

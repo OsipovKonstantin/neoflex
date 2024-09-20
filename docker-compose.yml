@@ -1,10 +1,10 @@
 version: '3.1'
 
 services:
-  neoflex-service:
+  vacation-pay-service:
     build: .
-    image: neoflex-service
-    container_name: neoflex-service
+    image: vacation-pay-service
+    container_name: vacation-pay-service
     ports:
       - "8080:8080"
     volumes:

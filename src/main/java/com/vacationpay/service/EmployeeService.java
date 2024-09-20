@@ -1,4 +1,4 @@
-package com.neostudy.neoflex.service;
+package com.vacationpay.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

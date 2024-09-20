@@ -1,4 +1,4 @@
-package com.neostudy.neoflex.exception;
+package com.vacationpay.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

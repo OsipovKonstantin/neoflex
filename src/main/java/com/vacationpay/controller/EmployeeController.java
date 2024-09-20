@@ -1,6 +1,6 @@
-package com.neostudy.neoflex.controller;
+package com.vacationpay.controller;
 
-import com.neostudy.neoflex.service.EmployeeService;
+import com.vacationpay.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
