@@ -31,8 +31,8 @@ API представлено в виде эндпоинта GET /calculacte дл
 <br>Затем в командной строке cmd выполните следующие команды
 
    ```
-git clone git@github.com:OsipovKonstantin/neoflex.git
-cd ~/neoflex   
+git clone git@github.com:OsipovKonstantin/vacation-pay-calculator.git
+cd ~/vacation-pay-calculator
 mvn clean package
 docker-compose up
    ```
