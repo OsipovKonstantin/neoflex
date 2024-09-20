@@ -19,6 +19,9 @@ public class EmployeeServiceUnitTest {
     @Autowired
     private EmployeeService employeeService;
 
+    private final static BigDecimal ZERO_VACATION_PAY = BigDecimal.valueOf(0).setScale(2, RoundingMode.HALF_EVEN);
+    private final static BigDecimal TWO_DAYS_VACATION_PAY = BigDecimal.valueOf(3413).setScale(2, RoundingMode.HALF_EVEN);
+
     @Test
     public void givenValidAverageSalaryAndWorkingVacationDays_whenCalculatingVacationPay_thenReturnPositiveVacationPay() {
         BigDecimal averageSalary = BigDecimal.valueOf(50000.50);
@@ -26,7 +29,7 @@ public class EmployeeServiceUnitTest {
                 LocalDate.of(2024, 2, 1),
                 LocalDate.of(2024, 2, 2)));
         assertThat(employeeService.calculateVacationPay(averageSalary, vacationDays))
-                .isEqualTo(BigDecimal.valueOf(3413).setScale(2, RoundingMode.HALF_EVEN));
+                .isEqualTo(TWO_DAYS_VACATION_PAY);
     }
 
     @Test
@@ -42,7 +45,7 @@ public class EmployeeServiceUnitTest {
                 LocalDate.of(2024, 1, 7),
                 LocalDate.of(2024, 1, 8)));
         assertThat(employeeService.calculateVacationPay(averageSalary, vacationDays))
-                .isEqualTo(BigDecimal.valueOf(0).setScale(2, RoundingMode.HALF_EVEN));
+                .isEqualTo(ZERO_VACATION_PAY);
     }
 
     @Test
@@ -56,7 +59,7 @@ public class EmployeeServiceUnitTest {
                 LocalDate.of(2024, 6, 12),
                 LocalDate.of(2024, 11, 4)));
         assertThat(employeeService.calculateVacationPay(averageSalary, vacationDays))
-                .isEqualTo(BigDecimal.valueOf(0).setScale(2, RoundingMode.HALF_EVEN));
+                .isEqualTo(ZERO_VACATION_PAY);
     }
 
     @Test
@@ -65,6 +68,6 @@ public class EmployeeServiceUnitTest {
         List<LocalDate> vacationDays = new ArrayList<>(List.of(
                 LocalDate.of(2025, 2, 24)));
         assertThat(employeeService.calculateVacationPay(averageSalary, vacationDays))
-                .isEqualTo(BigDecimal.valueOf(0).setScale(2, RoundingMode.HALF_EVEN));
+                .isEqualTo(ZERO_VACATION_PAY);
     }
 }
