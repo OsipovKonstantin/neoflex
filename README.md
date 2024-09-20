@@ -26,7 +26,7 @@ API представлено в виде эндпоинта GET /calculacte дл
 <br>Затем в командной строке cmd выполните следующие команды
 
    ```
-git clone git@github.com:employee-performance-assessment/epa_backend.git
+git clone git@github.com:OsipovKonstantin/neoflex.git
 cd ~/neoflex   
 mvn clean package
 git checkout dev
