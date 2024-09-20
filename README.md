@@ -33,5 +33,6 @@ docker-compose up
    ```
 Приложение готово к использованию! Сервис доступен по андресу [http://localhost:8080](http://localhost:8080).
 <br>Со сценариями работы приложения можно ознакомится, запустив коллекции
-[Postman-тестов](postman/neoflex.postman_collection.json), 
-указав в разделе Variables переменную baseUrl http://localhost:8080
+[Postman-тестов](postman/neoflex.postman_collection.json).
+Для этого необходимо открыть ПО Postman, нажать сочетание клавиш Ctrl+O (импорт), выбрать импорт по следующему пути Пользователи/имя_вашего_пользователя/neoflex/postman/neoflex.postman_collection.json
+Заходим в импортированную коллекцию, выбираем пункт Run/Run neoflex
